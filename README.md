@@ -24,8 +24,8 @@ This repository includes a pcb design, a 3d printed case and basic firmware.
 To get started you first need a version of the pcb using the manufacturing files included in the latest release.
 
 I got my pcb assembled from [PCBWay](https://www.pcbway.com/).
-TBD Fix comment when gerber and pick and place look fine.
-> **_NOTE:_**  Currently the spacing for the buttons is to wide, so that it cannot automatically be soldered by Pick and Place machines. However it can still be soldered by hand.
+
+I noticed JLCPCB has troubles assembling the pcb as the bme280 can only be assembled with their standard smt service which does not support such small pcbs.
 
 - If you want to assemble the pcb yourself please lookup the files in the BOM from the latest release.
 
@@ -107,7 +107,7 @@ The PCB for OpenESPTemp includes the following features:
 
 
 The PCB for OpenESPTemp was designed using [Flux](https://flux.ai). A copy of the project is included under [electronics](/electronics/), but you can also view the current version here:
-[Project Link](#insert-link-here).
+[Project Link](https://www.flux.ai/cuzimsyntax/openesptemp).
 
 Future versions of the OpenESPTemp hardware will transition to **KiCad**.
 
