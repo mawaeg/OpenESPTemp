@@ -118,7 +118,6 @@ TBD
 ---
 
 ## Coming next
-- [ ] Properly label Pinout
 - [ ] Move pcb to KiCad
 - [ ] Include mounting bracket for the case
 - [ ] Include HomeAssistant integration
