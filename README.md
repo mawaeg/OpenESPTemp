@@ -39,14 +39,13 @@ I noticed JLCPCB has troubles assembling the pcb as the bme280 can only be assem
 | M2.5 x 6 Screws                   | 3        | [M2.5 x 6 Screws](https://cnckitchen.store/products/m2-5-screw-stainless-steel-aisi-304-low-head?variant=47945362768207) | 
 | Keystone 204 Battery Clips        | 2        | [Battery Clips](https://www.mouser.de/ProductDetail/Keystone-Electronics/204?qs=lQmX4aIt5iBDvY1OQzCs8Q%3D%3D) | 
 | JST PH 2-Pin Cable (Male)         | 1        | [JST PH 2-Pin Cable](https://eckstein-shop.de/SeeedStudio2PinPowerConnector10cm2C22C0mmJST-Stecker) | 
-| JST PH 2-Pin Connector (Female)   | 1        | [JST PH 2-Pin Connector](https://www.reichelt.de/de/de/shop/produkt/jst_-_stiftleiste_gerade_1x2-polig_-_ph-185049) | Currently not included in Pcb BOM
 | CR123A battery                    | 1        | [CR123A](https://www.mouser.de/ProductDetail/Panasonic-Battery/CR123A?qs=n9x%252BPCefhfJMFGcu6jLWmg%3D%3D) | 
 | UART to USB Adapter               | 1        | [Adapter](https://eckstein-shop.de/WaveShare-CP2102-USB-UART-Board-Type-C)  | 
 
 ---
 
 ### Building the OpenESPTemp
-1. Get a (assembled) PCB and prepare it by soldering the JST PH 2-Pin Connector to it (if not already done)
+1. Get a PCB and prepare it by soldering the components onto it (if not already done through SMT assembly)
 2. Print the case (and the seal) with standard print settings and a layer height of 0.2 mm
 3. Insert the Heat Inserts into the holes provided using a soldering iron
 4. Solder both wires of the JST Cable onto a battery clip and press them into the space into the top part of the case
