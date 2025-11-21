@@ -1,0 +1,7 @@
+(fp_lib_table
+  (version 7)
+  (lib (name "esp32-c6")(type "KiCad")(uri "${KIPRJMOD}/libs/esp32-c6.pretty")(options "")(descr ""))
+  (lib (name "keystone_53")(type "KiCad")(uri "${KIPRJMOD}/libs/keystone_53.pretty")(options "")(descr ""))
+  (lib (name "qwiic")(type "KiCad")(uri "${KIPRJMOD}/libs/qwiic.pretty")(options "")(descr ""))
+  (lib (name "rv3028-c7")(type "KiCad")(uri "${KIPRJMOD}/libs/rv3028-c7.pretty")(options "")(descr ""))
+)

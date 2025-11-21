@@ -1,0 +1,37 @@
+{
+    "layout": {
+        "hspace": "2mm",
+        "vspace": "2mm",
+        "cols": "5"
+    },
+    "tabs": {
+        "type": "fixed",
+        "hcount": "3"
+    },
+    "cuts": {
+        "type": "mousebites",
+        "spacing": "1mm",
+        //"offset": "0.2mm",
+        "prolong": "0.5mm"
+    },
+    "framing": {
+        "type": "railstb",
+        "vspace": "3mm",
+        "chamferwidth": "1mm"
+    },
+    "tooling": {
+        "type": "3hole",
+        "hoffset": "2.5mm",
+        "voffset": "2.5mm",
+        "size": "1.5mm"
+    },
+    "fiducials": {
+        "type": "3fid",
+        "hoffset": "5mm",
+        "voffset": "2.5mm",
+        "coppersize": "2mm"
+    },
+    "post": {
+        "millradius": "1mm"
+    }
+}

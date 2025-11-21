@@ -3,3 +3,11 @@
 .vscode/
 
 SECRETS.h
+
+#electronics
+jlcpcb/
+panel/
+bom/
+fp-info-cache
+*-backups
+*.bak

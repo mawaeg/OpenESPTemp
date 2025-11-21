@@ -1,0 +1,189 @@
+(footprint "MicroCrystal_C7_SON-8_1.5x3.2mm_P0.9mm"
+	(version 20241229)
+	(generator "pcbnew")
+	(generator_version "9.0")
+	(layer "F.Cu")
+	(descr "MicroCrystal C7 SON, 8 Pin (https://www.microcrystal.com/fileadmin/Media/Products/RTC/App.Manual/RV-3028-C7_App-Manual.pdf#page=107), generated with kicad-footprint-generator ipc_noLead_generator.py")
+	(tags "MicroCrystal SON NoLead MicroCrystal-RV3028-C7")
+	(property "Reference" "REF**"
+		(at 0 2.63 0)
+		(layer "F.SilkS")
+		(uuid "9b6d05a0-e5e0-4ba6-ba6c-530a2bf2bd0a")
+		(effects
+			(font
+				(size 1 1)
+				(thickness 0.15)
+			)
+		)
+	)
+	(property "Value" "MicroCrystal_C7_SON-8_1.5x3.2mm_P0.9mm"
+		(at 0 2.63 0)
+		(layer "F.Fab")
+		(uuid "5c2b4da7-fbac-4abb-9f07-59e0c524401b")
+		(effects
+			(font
+				(size 1 1)
+				(thickness 0.15)
+			)
+		)
+	)
+	(property "Datasheet" ""
+		(at 0 0 0)
+		(layer "F.Fab")
+		(hide yes)
+		(uuid "c74ed91b-573e-4c44-907c-6c613c57c103")
+		(effects
+			(font
+				(size 1.27 1.27)
+				(thickness 0.15)
+			)
+		)
+	)
+	(property "Description" ""
+		(at 0 0 0)
+		(layer "F.Fab")
+		(hide yes)
+		(uuid "99f43f50-2f14-4d06-9444-7f8804f7536d")
+		(effects
+			(font
+				(size 1.27 1.27)
+				(thickness 0.15)
+			)
+		)
+	)
+	(attr smd)
+	(fp_line
+		(start -0.86 -1.935)
+		(end 0.86 -1.935)
+		(stroke
+			(width 0.12)
+			(type solid)
+		)
+		(layer "F.SilkS")
+		(uuid "7e4f4f58-12a9-4af6-af11-b391f02adde7")
+	)
+	(fp_line
+		(start 0.86 1.935)
+		(end -0.86 1.935)
+		(stroke
+			(width 0.12)
+			(type solid)
+		)
+		(layer "F.SilkS")
+		(uuid "cc5e3ce9-e4d8-4538-8f47-c790fea4dab7")
+	)
+	(fp_poly
+		(pts
+			(xy -1.27 -1.82) (xy -1.55 -1.82) (xy -1.27 -2.1)
+		)
+		(stroke
+			(width 0.12)
+			(type solid)
+		)
+		(fill yes)
+		(layer "F.SilkS")
+		(uuid "825c1524-5c2f-403b-93eb-1b5dc2fedeba")
+	)
+	(fp_rect
+		(start -1.38 -1.93)
+		(end 1.38 1.93)
+		(stroke
+			(width 0.05)
+			(type solid)
+		)
+		(fill no)
+		(layer "F.CrtYd")
+		(uuid "fcc67de3-17b2-4832-b004-1bdb2b7e855f")
+	)
+	(fp_poly
+		(pts
+			(xy -0.75 -1.225) (xy -0.75 1.6) (xy 0.75 1.6) (xy 0.75 -1.6) (xy -0.375 -1.6)
+		)
+		(stroke
+			(width 0.1)
+			(type solid)
+		)
+		(fill no)
+		(layer "F.Fab")
+		(uuid "023931dc-3de2-4a3c-8110-0114e5c8ca2b")
+	)
+	(fp_text user "${REFERENCE}"
+		(at 0 0 90)
+		(layer "F.Fab")
+		(uuid "97d4e36c-a9fe-4c21-9b8a-56d83f2cd469")
+		(effects
+			(font
+				(size 0.8 0.8)
+				(thickness 0.12)
+			)
+		)
+	)
+	(pad "1" smd roundrect
+		(at -0.65 -1.35)
+		(size 0.95 0.65)
+		(layers "F.Cu" "F.Mask" "F.Paste")
+		(roundrect_rratio 0.25)
+		(uuid "25010060-562e-4ac5-9ffe-baa7c4f4582b")
+	)
+	(pad "2" smd roundrect
+		(at -0.65 -0.45)
+		(size 0.95 0.65)
+		(layers "F.Cu" "F.Mask" "F.Paste")
+		(roundrect_rratio 0.25)
+		(uuid "b064af13-b34e-4e39-bcfe-df9e8eeb059b")
+	)
+	(pad "3" smd roundrect
+		(at -0.65 0.45)
+		(size 0.95 0.65)
+		(layers "F.Cu" "F.Mask" "F.Paste")
+		(roundrect_rratio 0.25)
+		(uuid "c4700971-f68a-4221-9716-3e0948afaf0b")
+	)
+	(pad "4" smd roundrect
+		(at -0.65 1.35)
+		(size 0.95 0.65)
+		(layers "F.Cu" "F.Mask" "F.Paste")
+		(roundrect_rratio 0.25)
+		(uuid "1f9bf70a-8196-4bb1-8020-06e0236a3a60")
+	)
+	(pad "5" smd roundrect
+		(at 0.65 1.35)
+		(size 0.95 0.65)
+		(layers "F.Cu" "F.Mask" "F.Paste")
+		(roundrect_rratio 0.25)
+		(uuid "e5025720-ea14-4a12-8017-f747beb70eb6")
+	)
+	(pad "6" smd roundrect
+		(at 0.65 0.45)
+		(size 0.95 0.65)
+		(layers "F.Cu" "F.Mask" "F.Paste")
+		(roundrect_rratio 0.25)
+		(uuid "f06d3ef2-ecc5-4028-a3d3-99a57f564475")
+	)
+	(pad "7" smd roundrect
+		(at 0.65 -0.45)
+		(size 0.95 0.65)
+		(layers "F.Cu" "F.Mask" "F.Paste")
+		(roundrect_rratio 0.25)
+		(uuid "0a6ce372-e059-4026-ba5a-5b5347f04a89")
+	)
+	(pad "8" smd roundrect
+		(at 0.65 -1.35)
+		(size 0.95 0.65)
+		(layers "F.Cu" "F.Mask" "F.Paste")
+		(roundrect_rratio 0.25)
+		(uuid "322c581d-90db-4e72-aff8-e25fd0b60b5e")
+	)
+	(embedded_fonts no)
+	(model "${KIPRJMOD}/libs/rv3028-c7.pretty/step/RV-3028-C7--3DModel-STEP-56544.STEP"
+		(offset
+			(xyz 0 0 0)
+		)
+		(scale
+			(xyz 1 1 1)
+		)
+		(rotate
+			(xyz -90 -0 -0)
+		)
+	)
+)

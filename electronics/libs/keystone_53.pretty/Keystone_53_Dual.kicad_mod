@@ -1,0 +1,155 @@
+(footprint "Keystone_53_Dual"
+	(version 20241229)
+	(generator "pcbnew")
+	(generator_version "9.0")
+	(layer "F.Cu")
+	(property "Reference" "REF**"
+		(at 0 -0.5 0)
+		(unlocked yes)
+		(layer "F.SilkS")
+		(uuid "6267dc4b-a751-4379-899d-e58413e9168a")
+		(effects
+			(font
+				(size 1 1)
+				(thickness 0.1)
+			)
+		)
+	)
+	(property "Value" "Keystone_53_Dual"
+		(at 0 1 0)
+		(unlocked yes)
+		(layer "F.Fab")
+		(uuid "5f755b28-669a-4963-8b69-1ffcdaa15695")
+		(effects
+			(font
+				(size 1 1)
+				(thickness 0.15)
+			)
+		)
+	)
+	(property "Datasheet" ""
+		(at 0 0 0)
+		(unlocked yes)
+		(layer "F.Fab")
+		(hide yes)
+		(uuid "ec9c04a8-6c19-4fb4-806c-e6e0df1acec3")
+		(effects
+			(font
+				(size 1 1)
+				(thickness 0.15)
+			)
+		)
+	)
+	(property "Description" ""
+		(at 0 0 0)
+		(unlocked yes)
+		(layer "F.Fab")
+		(hide yes)
+		(uuid "a441e865-20cf-475a-951e-8d1522fbacfe")
+		(effects
+			(font
+				(size 1 1)
+				(thickness 0.15)
+			)
+		)
+	)
+	(attr smd)
+	(fp_rect
+		(start -31 -6.9)
+		(end 31 6.9)
+		(stroke
+			(width 0.05)
+			(type solid)
+		)
+		(fill no)
+		(layer "F.CrtYd")
+		(uuid "ad479a89-84b9-4913-a8b0-548404625f99")
+	)
+	(fp_text user "-"
+		(at 9.5 1 0)
+		(unlocked yes)
+		(layer "F.SilkS")
+		(uuid "21007d9b-fdae-4f9d-9202-0cdef3e2209d")
+		(effects
+			(font
+				(size 2 2)
+				(thickness 0.4)
+				(bold yes)
+			)
+			(justify bottom)
+		)
+	)
+	(fp_text user "+"
+		(at -9.5 1 0)
+		(unlocked yes)
+		(layer "F.SilkS")
+		(uuid "57934fcf-ab9b-4509-9661-fca58e095ab3")
+		(effects
+			(font
+				(size 2 2)
+				(thickness 0.4)
+				(bold yes)
+			)
+			(justify bottom)
+		)
+	)
+	(fp_text user "${REFERENCE}"
+		(at 0 2.5 0)
+		(unlocked yes)
+		(layer "F.Fab")
+		(uuid "8102c76e-2c44-4149-aa6c-81f25e38c00c")
+		(effects
+			(font
+				(size 1 1)
+				(thickness 0.15)
+			)
+		)
+	)
+	(pad "1" smd rect
+		(at -28.03 0)
+		(size 3.96 2.34)
+		(layers "F.Cu" "F.Mask" "F.Paste")
+		(uuid "dceb4cef-3c3d-4313-b6fb-d0f86fd5fb07")
+	)
+	(pad "1" smd rect
+		(at -15.18 0)
+		(size 3.96 5.08)
+		(layers "F.Cu" "F.Mask" "F.Paste")
+		(uuid "ad12f4c2-9af2-42b9-b7a9-0ce7d56735c1")
+	)
+	(pad "2" smd rect
+		(at 15.18 0 180)
+		(size 3.96 5.08)
+		(layers "F.Cu" "F.Mask" "F.Paste")
+		(uuid "177d0a41-b146-4a7a-9a99-8ced3d954012")
+	)
+	(pad "2" smd rect
+		(at 28.03 0 180)
+		(size 3.96 2.34)
+		(layers "F.Cu" "F.Mask" "F.Paste")
+		(uuid "29fba175-0c2e-464a-9822-d5cc1769174f")
+	)
+	(embedded_fonts no)
+	(model "${KIPRJMOD}/libs/keystone_53.pretty/step/53.STEP"
+		(offset
+			(xyz 21.5 0 0)
+		)
+		(scale
+			(xyz 1 1 1)
+		)
+		(rotate
+			(xyz -90 -0 -0)
+		)
+	)
+	(model "${KIPRJMOD}/libs/keystone_53.pretty/step/53.STEP"
+		(offset
+			(xyz -21.5 0 0)
+		)
+		(scale
+			(xyz 1 1 1)
+		)
+		(rotate
+			(xyz -90 -0 180)
+		)
+	)
+)
