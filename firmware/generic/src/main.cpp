@@ -8,13 +8,17 @@
 #include <Adafruit_Sensor.h>
 #include <Adafruit_BME280.h>
 
-#include "SECRETS.h"
+#include "CredentialManager.h"
+#include "ConfigurationWebServer.h"
 
 uint64_t deepsleep_time = 900000000;
 
 Adafruit_BME280 bme;
 WiFiUDP ntpUDP;
 NTPClient timeClient(ntpUDP);
+
+CredentialManager manager;
+ConfigurationWebServer configServer(manager);
 
 float temperature = -1;
 float humidity = -1;
@@ -34,7 +38,11 @@ void setup() {
     Serial.begin(115200);
     Serial.println("Hello world!");
   #endif
-  
+
+  if (!manager.is_valid()){
+    configServer.run();
+  }
+
   // In case no connection is established esp sleeps 15 minutes.
   initialize_wifi();
   // In case sensor couldn't be initialized we can still calculate correct sleep time and sleep then.
@@ -76,7 +84,7 @@ void initialize_wifi(){
   #ifdef DEBUG
     Serial.println("Connecting to network.");
   #endif
-  WiFi.begin(wifi_ssid, wifi_pswd);
+  WiFi.begin(manager.get(SSID), manager.get(PASSWORD));
 
   uint8_t connect_counter = 0;
   while (WiFi.status() != WL_CONNECTED) {
@@ -154,12 +162,11 @@ void post_data(){
     Serial.println("Preparing data");
   #endif
 
-  httpClient.begin(post_url);
-  httpClient.addHeader("Authorization", "Bearer " + String(x_access_token));
+  httpClient.begin(manager.get(POST_URL));
+  httpClient.addHeader("Authorization", "Bearer " + manager.get(AUTHORIZATION));
   httpClient.addHeader("Content-Type", "application/json");
 
   String json_data = "{\"temperature\": \"" + String(temperature) + "\", \"humidity\": \"" + String(humidity) + "\", \"pressure\": \"" + String(pressure) + "\", \"voltage\": \"" + String(voltage) + "\"}";
-  // String json_data = "[" + String(temperature) + "," + String(humidity) + "," + String(pressure) + "," + String(voltage) + "]";
 
 
   #ifdef DEBUG
