@@ -58,7 +58,11 @@ I noticed JLCPCB has troubles assembling the pcb as the bme280 can only be assem
 <img src="docs/_assets/assembled_sensor.webp" alt="Assembled sensor" width="480px">
 
 ### Building the OpenESPTemp Firmware
+
+> **_NOTE:_** The newer releases include a .bin file which can just be flashed, as the configuration is not compiled anymore. If you want to use the precompiled binaries you can skip this.
+
 - The firmware can be compiled and flashed with [PlatformIO](https://platformio.org/).
+   - If you just want to flash the precompiled firmware you can also just use [esptool](https://github.com/espressif/esptool)
 - By default the sensor connects to a given WIFI network and sends data every 15 minutes to a given api endpoint.
 
 #### Compile
@@ -78,12 +82,23 @@ I noticed JLCPCB has troubles assembling the pcb as the bme280 can only be assem
 
 > **_NOTE:_** When connecting the UART to USB adapter your **must disconnect the battery** beforehand!
 
+#### Flash using PlatformIO
+
 - To flash using PlatformIO use the following command:
    - platformio run --target upload --environment esp32-c3
 - When you see `Looking for upload port...` in the console you have to put the ESP32 in boot mode:
    1. Push the Reset and the Boot button at the same time
    2. Release the Reset button while keep pressing the Boot button.
    3. The upload should now start and you can release the Boot button.
+
+#### Flash precompiled binary using esptool
+- You can flash the precompiled binary using esptool with the following command:
+   ```shell
+      python -m esptool --chip esp32-c3 --port <your-port> --baud 460800 write_flash -z 0x1000 firmware.bin
+   ```
+- You have to insert the correct port into the command, read more about it [here](https://docs.espressif.com/projects/esptool/en/latest/esp32/esptool/basic-options.html#serial-port).
+- Also the ESP32 needs to be in boot mode, as described in the previous chapter
+
 ---
 
 ### Configure the OpenESPTemp
