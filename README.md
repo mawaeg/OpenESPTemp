@@ -32,15 +32,15 @@ I noticed JLCPCB has troubles assembling the pcb as the bme280 can only be assem
 ### Other needed parts
 | Part                              | Quantity | Link (recommendation)                                                | Note
 |-----------------------------------|----------|----------------------------------------------------------------------|------|
-| 3D Printing Filament (PETG)       | 40g      | [PETG Filament](https://www.nobufil.com/product-page/filament-petg-white) | 
-| TPU Filament                      | 2g       | [TPU Filament](https://www.redline-filament.com/products/tpu-weiss?_pos=3&_sid=f40a3659a&_ss=r) | 
-| M2.5 Heat Inserts                 | 7        | [Heat Inserts](https://cnckitchen.store/products/gewindeeinsatz-threaded-insert-m2-5-standard-100-stk-pcs) | 
-| M2.5 x 12 Screws                  | 4        | [M2.5 x 12 Screws](https://cnckitchen.store/products/m2-5-screw-stainless-steel-aisi-304-low-head?variant=47945362833743) | 
-| M2.5 x 6 Screws                   | 3        | [M2.5 x 6 Screws](https://cnckitchen.store/products/m2-5-screw-stainless-steel-aisi-304-low-head?variant=47945362768207) | 
-| Keystone 204 Battery Clips        | 2        | [Battery Clips](https://www.mouser.de/ProductDetail/Keystone-Electronics/204?qs=lQmX4aIt5iBDvY1OQzCs8Q%3D%3D) | 
-| JST PH 2-Pin Cable (Male)         | 1        | [JST PH 2-Pin Cable](https://eckstein-shop.de/SeeedStudio2PinPowerConnector10cm2C22C0mmJST-Stecker) | 
-| CR123A battery                    | 1        | [CR123A](https://www.mouser.de/ProductDetail/Panasonic-Battery/CR123A?qs=n9x%252BPCefhfJMFGcu6jLWmg%3D%3D) | 
-| UART to USB Adapter               | 1        | [Adapter](https://eckstein-shop.de/WaveShare-CP2102-USB-UART-Board-Type-C)  | 
+| 3D Printing Filament (PETG)       | 40g      | [PETG Filament](https://www.nobufil.com/product-page/filament-petg-white) |
+| TPU Filament                      | 2g       | [TPU Filament](https://www.redline-filament.com/products/tpu-weiss?_pos=3&_sid=f40a3659a&_ss=r) |
+| M2.5 Heat Inserts                 | 7        | [Heat Inserts](https://cnckitchen.store/products/gewindeeinsatz-threaded-insert-m2-5-standard-100-stk-pcs) |
+| M2.5 x 12 Screws                  | 4        | [M2.5 x 12 Screws](https://cnckitchen.store/products/m2-5-screw-stainless-steel-aisi-304-low-head?variant=47945362833743) |
+| M2.5 x 6 Screws                   | 3        | [M2.5 x 6 Screws](https://cnckitchen.store/products/m2-5-screw-stainless-steel-aisi-304-low-head?variant=47945362768207) |
+| Keystone 204 Battery Clips        | 2        | [Battery Clips](https://www.mouser.de/ProductDetail/Keystone-Electronics/204?qs=lQmX4aIt5iBDvY1OQzCs8Q%3D%3D) |
+| JST PH 2-Pin Cable (Male)         | 1        | [JST PH 2-Pin Cable](https://eckstein-shop.de/SeeedStudio2PinPowerConnector10cm2C22C0mmJST-Stecker) |
+| CR123A battery                    | 1        | [CR123A](https://www.mouser.de/ProductDetail/Panasonic-Battery/CR123A?qs=n9x%252BPCefhfJMFGcu6jLWmg%3D%3D) |
+| UART to USB Adapter               | 1        | [Adapter](https://eckstein-shop.de/WaveShare-CP2102-USB-UART-Board-Type-C)  |
 
 ---
 
@@ -52,7 +52,7 @@ I noticed JLCPCB has troubles assembling the pcb as the bme280 can only be assem
 5. Put the seal onto the top part of the case and the 4 small parts on the nubs where the pcb will go to protect it from scratches
 6. After flashing the firmware (described in the next chapter) you can screw the pcb into place
 7. Insert the battery (**Check the polarity and never connect USB to UART and battery at the same time**) and connect the battery cable to the pcb
-8. The sensor should start sending data 
+8. The sensor should start sending data
 9. You can screw the top part of the case onto the bottom part
 
 <img src="docs/_assets/assembled_sensor.webp" alt="Assembled sensor" width="480px">
@@ -60,15 +60,6 @@ I noticed JLCPCB has troubles assembling the pcb as the bme280 can only be assem
 ### Building the OpenESPTemp Firmware
 - The firmware can be compiled and flashed with [PlatformIO](https://platformio.org/).
 - By default the sensor connects to a given WIFI network and sends data every 15 minutes to a given api endpoint.
-- To be able to build the firmware you need to configure the firmware first.
-- For that you need to create a file called `SECRETS.h` under [/firmware/generic/src/](/firmware/generic/src/)  
-  The file should look like that:
-   ```c
-      const char* wifi_ssid = "Your wifi ssid";
-      const char* wifi_pswd = "Your wifi password";
-      const char* post_url = "your api endpoint the data should be sent to";
-      const char* x_access_token = "your Bearer token for the Authorization header";
-   ```
 
 #### Compile
 - You can build the project in debug mode to get debug information over UART or in release without debug information:
@@ -79,7 +70,7 @@ I noticed JLCPCB has troubles assembling the pcb as the bme280 can only be assem
 
 
 ### Flashing the OpenESPTemp Firmware
-- First you have to connect the UART to USB Adapter to the Pcb. 
+- First you have to connect the UART to USB Adapter to the Pcb.
    - I use a [Pogo Pin Adapter](https://www.az-delivery.de/en/products/4-pin-prototyping-clamps?_pos=2&_psq=pogo&_ss=e&_v=1.0) for that and don't solder the Pin header at all.
 - The wiring should look like this:
 
@@ -94,6 +85,21 @@ I noticed JLCPCB has troubles assembling the pcb as the bme280 can only be assem
    2. Release the Reset button while keep pressing the Boot button.
    3. The upload should now start and you can release the Boot button.
 ---
+
+### Configure the OpenESPTemp
+- After flashing you have to press the reset button once to start the firmware
+- When the OpenESPTemp is not configured yet, it will create a WiFi network which can be used to configure the OpenESPTemp:
+
+1. Connect to `OpenESPTemp Configurator`
+2. Open `http://192.168.4.1` in your browser
+   - You should now see a simple form for configuration
+3. Configure the sensor:
+   - SSID: SSID of the network the sensor should connect to
+   - Password: Password of the network
+   - Post URL: The URL where the post request should be sent to
+   - Authorization: The Bearer token used for authentication (Do no include Bearer, only the token itself)
+4. After clicking submit, the configuration will be saved and the OpenESPTemp will be restarted
+5. Now the sensor should work as expected.
 
 ## PCB Design
 
