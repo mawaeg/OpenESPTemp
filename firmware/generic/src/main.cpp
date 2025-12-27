@@ -58,7 +58,7 @@ void setup() {
   }
   // ToDo Send Error message in case bme init failed.
 
-  
+
   // Calculate correct sleep time with ntp
   set_sleep_time();
 
@@ -67,9 +67,6 @@ void setup() {
   esp_sleep_enable_timer_wakeup(deepsleep_time);
 
   // Disable unused peripherals
-  esp_sleep_pd_config(ESP_PD_DOMAIN_RTC_PERIPH, ESP_PD_OPTION_OFF);    // RTC peripherals
-  esp_sleep_pd_config(ESP_PD_DOMAIN_RTC_SLOW_MEM, ESP_PD_OPTION_OFF);  // RTC slow memory
-  esp_sleep_pd_config(ESP_PD_DOMAIN_RTC_FAST_MEM, ESP_PD_OPTION_OFF);  // RTC fast memory
   esp_sleep_pd_config(ESP_PD_DOMAIN_XTAL, ESP_PD_OPTION_OFF);          // Crystal oscillator
   esp_sleep_pd_config(ESP_PD_DOMAIN_MAX, ESP_PD_OPTION_OFF);           // Ensure that no more power domains are turned on
 
@@ -113,7 +110,7 @@ bool initialize_bme(){
   #endif
   Wire.setPins(5, 6);
   int status = bme.begin(0x76);
-  bme.setSampling(Adafruit_BME280::MODE_FORCED, 
+  bme.setSampling(Adafruit_BME280::MODE_FORCED,
                   Adafruit_BME280::SAMPLING_X1,
                   Adafruit_BME280::SAMPLING_X1,
                   Adafruit_BME280::SAMPLING_X1,
@@ -156,7 +153,7 @@ void post_data(){
   HTTPClient httpClient;
 
   httpClient.setConnectTimeout(5000);
-  //We do not need to set timeout as it is set to 5000 by default. 
+  //We do not need to set timeout as it is set to 5000 by default.
 
   #ifdef DEBUG
     Serial.println("Preparing data");
