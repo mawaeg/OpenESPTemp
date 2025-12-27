@@ -28,6 +28,9 @@ Melopero_RV3028 rtc;
 CredentialManager manager;
 ConfigurationWebServer configServer(manager);
 
+CredentialManager manager;
+ConfigurationWebServer configServer(manager);
+
 float temperature = -1;
 float humidity = -1;
 float pressure = -1;
