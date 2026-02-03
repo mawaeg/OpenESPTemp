@@ -14,11 +14,14 @@
 
 // The sleeptime in minutes
 #define SLEEPTIME 15
+// Time needed for reset with FCT pin
+#define FCT_PIN_RESET_HOLD_TIME 5000
 
 #define SDA_PIN 21
 #define SCL_PIN 22
 #define LATCH_PIN 2
 #define VOLTAGE_PIN 0
+#define FCT_PIN 7
 
 Adafruit_BME280 bme;
 WiFiUDP ntpUDP;
@@ -33,6 +36,7 @@ float humidity = -1;
 float pressure = -1;
 float voltage = -1;
 
+void fct_pin_reset_logic();
 void initialize_wifi();
 void initialize_timer();
 bool initialize_bme();
@@ -45,14 +49,14 @@ void setup() {
   pinMode(LATCH_PIN, OUTPUT);
   digitalWrite(LATCH_PIN, HIGH);
 
-  delay(1000);
+  pinMode(VOLTAGE_PIN, INPUT);
 
-  // Bat LVL
-  pinMode(0, INPUT);
   #ifdef DEBUG
     Serial.begin(115200);
     Serial.println("Hello world!");
   #endif
+
+  fct_pin_reset_logic();
 
   if (!manager.is_valid()){
     configServer.run();
@@ -82,6 +86,40 @@ void setup() {
 void loop() {
   // This will never be called and therefore stay empty as the esp goes back to sleep after sending data in setup.
   delay(1000);
+}
+
+void fct_pin_reset_logic(){
+  pinMode(FCT_PIN, INPUT_PULLUP);
+
+  if (digitalRead(FCT_PIN) != LOW){
+    return;
+  }
+
+  #ifdef DEBUG
+    Serial.println("Starting FCT button reset hold time counter");
+  #endif
+
+  unsigned long start_time = millis();
+  bool reset_done = false;
+
+  while(digitalRead(FCT_PIN) == LOW){
+    if (millis() - start_time > FCT_PIN_RESET_HOLD_TIME){
+      for (int i = 0; i < credential_keys.size(); i++){
+          manager.remove(credential_keys[i]);
+      }
+      reset_done = true;
+      break;
+    }
+    delay(10);
+  }
+  #ifdef DEBUG
+    if (reset_done){
+        Serial.println("Reset was performed. Credentials have been deleted.");
+    }
+    else{
+      Serial.println("Reset aborted. Credentials have NOT been deleted.");
+    }
+  #endif
 }
 
 void initialize_wifi(){
