@@ -671,9 +671,9 @@
 		)
 	)
 	(embedded_fonts no)
-	(model "${KICAD8_3RD_PARTY}/3dmodels/com_github_espressif_kicad-libraries/espressif.3dshapes/ESP32-C6-MINI-1.STEP"
+	(model "${KIPRJMOD}/libs/esp32-c6.pretty/step/ESP32-C6-MINI-1.STEP"
 		(offset
-			(xyz -6.55 -8.3 0.5)
+			(xyz -6.55 -8.3 0)
 		)
 		(scale
 			(xyz 1 1 1)

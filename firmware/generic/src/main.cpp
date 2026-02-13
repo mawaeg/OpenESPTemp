@@ -85,6 +85,7 @@ void setup() {
 
 void loop() {
   // This will never be called and therefore stay empty as the esp goes back to sleep after sending data in setup.
+  digitalWrite(LATCH_PIN, LOW);
   delay(1000);
 }
 
