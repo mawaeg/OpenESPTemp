@@ -51,6 +51,7 @@ The PCB can be ordered from any PCB manufacturer (e.g., JLCPCB). It can be order
 1. **Prepare the PCB**: Solder the components onto the PCB (if not using an SMT service).
    > **🛑 Warning:** You need to short the Solder Jumper labeled LDO when not using a LDO! (Which is the default)
    - The current version of the pcb has an issue with C4. Instead of the cap you need to short the two contacts of the capacitor.
+   - Also if using a Pogo Adapter to flash the firmware, it should be flashed before mounting the battery holders, as the battery holder blocks access to the pins with the adapter.
 
    <img src="docs/_assets/pcb_fix.webp" alt="Pcb Fix" width="512px">
 
@@ -88,11 +89,18 @@ platformio run --environment esp32-c6
 
 ### Flashing
 
-**Wiring:** Connect the UART to USB adapter to the PCB.
+**Wiring:** Connect the UART to USB adapter to the PCB:
+
+| UART Adapter | Direction | PCB | Note |
+| :--- | :---: | :--- | :--- |
+| **3V3** | ⟷ | **3V3** | Use 3.3V only (do not use 5V) |
+| **GND** | ⟷ | **GND** | Common ground is required |
+| **TX** | ⟶ | **RX** | Connect Transmit to Receive |
+| **RX** | ⟵ | **TX** | Connect Receive to Transmit |
+
+> **ℹ️ Info:** Remember to **cross** the data lines! The **TX** (Transmit) pin on the adapter must connect to the **RX** (Receive) pin on the PCB, and vice versa.
 
 > **🛑 Warning:** You must disconnect the battery before connecting the UART to USB adapter!
-
-TBD Image ?
 
 #### Option A: Flashing via PlatformIO
 Run the following command:
