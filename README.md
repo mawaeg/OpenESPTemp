@@ -1,154 +1,185 @@
 # OpenESPTemp
 
-**OpenESPTemp** is an open-source, battery-powered temperature and environmental monitoring sensor built using ESP32-C3 and a BME280 sensor. It can easily be integrated into IoT systems.
+**OpenESPTemp** is an open-source, battery-powered temperature and environmental monitoring sensor built using an ESP32-C6 and a BME280 sensor. It is designed for integration into IoT systems.
 
-This repository includes a pcb design, a 3d printed case and basic firmware.
+The PCB is designed to operate with a rechargeable LiFePo4 AA battery. This repository includes the PCB design, a 3D-printable case, and basic firmware.
 
 <div style="display: flex;">
-   <img src="docs/_assets/pcb_front_transparent.webp" alt="PCB Front" width="360px">
-   <img src="docs/_assets/pcb_back_transparent.webp" alt="PCB Back" width="360px">
+   <img src="docs/_assets/case_side.webp" alt="Case Side" height="512px" width="273px">
+   <img src="docs/_assets/pcb_front_transparent.webp" alt="PCB Front" height="512px">
+   <img src="docs/_assets/pcb_back_transparent.webp" alt="PCB Back" height="512px">
 </div>
 
-## Features
-- **Temperature Monitoring**: Accurate readings with the BME280 sensor.
-- **Environment Sensing**: Includes humidity and pressure measurements.
-- **Low Power**: Optimized for battery-powered operation.
-- **Battery Monitoring**: Allows to monitor the battery voltage.
-- **Open Source**: Fully customizable for your specific needs.
-- **ESP32-C3 Powered**: Leverages the capabilities of the ESP32-C3 for efficient wireless communication and processing.
+---
 
-## Getting Started
+## ✨ Features
 
-### Pcb
-
-To get started you first need a version of the pcb using the manufacturing files included in the latest release.
-
-I got my pcb assembled from [PCBWay](https://www.pcbway.com/).
-
-I noticed JLCPCB has troubles assembling the pcb as the bme280 can only be assembled with their standard smt service which does not support such small pcbs.
-
-- If you want to assemble the pcb yourself please lookup the files in the BOM from the latest release.
-
-### Other needed parts
-| Part                              | Quantity | Link (recommendation)                                                | Note
-|-----------------------------------|----------|----------------------------------------------------------------------|------|
-| 3D Printing Filament (PETG)       | 40g      | [PETG Filament](https://www.nobufil.com/product-page/filament-petg-white) |
-| TPU Filament                      | 2g       | [TPU Filament](https://www.redline-filament.com/products/tpu-weiss?_pos=3&_sid=f40a3659a&_ss=r) |
-| M2.5 Heat Inserts                 | 7        | [Heat Inserts](https://cnckitchen.store/products/gewindeeinsatz-threaded-insert-m2-5-standard-100-stk-pcs) |
-| M2.5 x 12 Screws                  | 4        | [M2.5 x 12 Screws](https://cnckitchen.store/products/m2-5-screw-stainless-steel-aisi-304-low-head?variant=47945362833743) |
-| M2.5 x 6 Screws                   | 3        | [M2.5 x 6 Screws](https://cnckitchen.store/products/m2-5-screw-stainless-steel-aisi-304-low-head?variant=47945362768207) |
-| Keystone 204 Battery Clips        | 2        | [Battery Clips](https://www.mouser.de/ProductDetail/Keystone-Electronics/204?qs=lQmX4aIt5iBDvY1OQzCs8Q%3D%3D) |
-| JST PH 2-Pin Cable (Male)         | 1        | [JST PH 2-Pin Cable](https://eckstein-shop.de/SeeedStudio2PinPowerConnector10cm2C22C0mmJST-Stecker) |
-| CR123A battery                    | 1        | [CR123A](https://www.mouser.de/ProductDetail/Panasonic-Battery/CR123A?qs=n9x%252BPCefhfJMFGcu6jLWmg%3D%3D) |
-| UART to USB Adapter               | 1        | [Adapter](https://eckstein-shop.de/WaveShare-CP2102-USB-UART-Board-Type-C)  |
+- **Temperature Monitoring**: Provides readings using the BME280 sensor.
+- **Environmental Sensing**: Includes humidity and pressure measurements.
+- **Low Power**: Optimized for battery-powered operation (under 200nA power consumption while sleeping).
+- **Battery Monitoring**: Allows monitoring of the battery voltage.
+- **ESP32-C6 Microcontroller**: Handles wireless communication and processing.
+- **Customizable PCB**: Features a Qwiic connector and the option to use an LDO when not using a LiFePo4 battery.
+- **Open Source**: Fully customizable for specific use cases.
 
 ---
 
-### Building the OpenESPTemp
-1. Get a PCB and prepare it by soldering the components onto it (if not already done through SMT assembly)
-2. Print the case (and the seal) with standard print settings and a layer height of 0.2 mm
-3. Insert the Heat Inserts into the holes provided using a soldering iron
-4. Solder both wires of the JST Cable onto a battery clip and press them into the space into the top part of the case
-5. Put the seal onto the top part of the case and the 4 small parts on the nubs where the pcb will go to protect it from scratches
-6. After flashing the firmware (described in the next chapter) you can screw the pcb into place
-7. Insert the battery (**Check the polarity and never connect USB to UART and battery at the same time**) and connect the battery cable to the pcb
-8. The sensor should start sending data
-9. You can screw the top part of the case onto the bottom part
+## 🚀 Getting Started
 
-<img src="docs/_assets/assembled_sensor.webp" alt="Assembled sensor" width="480px">
+### 1. The PCB
 
-### Building the OpenESPTemp Firmware
+The PCB can be ordered from any PCB manufacturer (e.g., JLCPCB). It can be ordered as single boards or in panels of 5.
 
-> **_NOTE:_** The newer releases include a .bin file which can just be flashed, as the configuration is not compiled anymore. If you want to use the precompiled binaries you can skip this.
+- **Manufacturing Files & BOM**: Included in the latest release. The Interactive HTML BOM (iBOM) is recommended for manual assembly.
+- **SMT Assembly**: If using an SMT service, you will need to generate the BOM and position files yourself.
 
-- The firmware can be compiled and flashed with [PlatformIO](https://platformio.org/).
-   - If you just want to flash the precompiled firmware you can also just use [esptool](https://github.com/espressif/esptool)
-- By default the sensor connects to a given WIFI network and sends data every 15 minutes to a given api endpoint.
+> **💡 Note:** You will need two Keystone 53 battery contacts; the BOM only mentions one.
 
-#### Compile
-- You can build the project in debug mode to get debug information over UART or in release without debug information:
-   ```shell
-      platformio run --environment esp32-c3-debug
-      platformio run --environment esp32-c3
-   ```
+### 2. Additional Parts
 
-
-### Flashing the OpenESPTemp Firmware
-- First you have to connect the UART to USB Adapter to the Pcb.
-   - I use a [Pogo Pin Adapter](https://www.az-delivery.de/en/products/4-pin-prototyping-clamps?_pos=2&_psq=pogo&_ss=e&_v=1.0) for that and don't solder the Pin header at all.
-- The wiring should look like this:
-
-<img src="docs/_assets/flash_wiring.webp" alt="Flash wiring" width="480px">
-
-> **_NOTE:_** When connecting the UART to USB adapter your **must disconnect the battery** beforehand!
-
-#### Flash using PlatformIO
-
-- To flash using PlatformIO use the following command:
-   - platformio run --target upload --environment esp32-c3
-- When you see `Looking for upload port...` in the console you have to put the ESP32 in boot mode:
-   1. Push the Reset and the Boot button at the same time
-   2. Release the Reset button while keep pressing the Boot button.
-   3. The upload should now start and you can release the Boot button.
-
-#### Flash precompiled binary using esptool
-- You can flash the precompiled binary using esptool with the following command:
-   ```shell
-      python -m esptool --chip esp32-c3 --port <your-port> --baud 460800 write_flash -z 0x1000 firmware.bin
-   ```
-- You have to insert the correct port into the command, read more about it [here](https://docs.espressif.com/projects/esptool/en/latest/esp32/esptool/basic-options.html#serial-port).
-- Also the ESP32 needs to be in boot mode, as described in the previous chapter
+| Part | Quantity | Recommendation / Link | Note |
+| :--- | :---: | :--- | :--- |
+| **LiFePo4 AA (14500) battery (!Normal AA batteries won't work!)** | 1 | [LiFePo4 battery](https://de.aliexpress.com/item/1005005870958670.html?spm=a2g0o.store_pc_home.promoteWysiwyg_2003671164534.1005005870958670&gatewayAdapt=glo2deu) | Any 3.2V LiFePo4 battery should work |
+| **3D Printing Filament (PETG)** | ~50g | [White PETG Filament](https://www.nobufil.com/product-page/filament-petg-white) | |
+| **UART to USB Adapter** | 1 | [WaveShare CP2102 Adapter](https://de.aliexpress.com/item/1005006742102516.html?pdp_npi=4%40dis%21EUR%21%E2%82%AC%201%2C97%21%E2%82%AC%200%2C99%21%21%212.28%211.14%21%40211b876717711633668585571ecf24%2112000038159199244%21sh%21DE%210%21X&spm=a2g0o.store_pc_allItems_or_groupList.new_all_items_2007567450475.1005006742102516&gatewayAdapt=glo2deu) | |
+| **Pogo Pin Adapter** *(Optional)* | 1 | [4-Pin Prototyping Clamps](https://de.aliexpress.com/item/1005007887384238.html?pdp_npi=4%40dis%21EUR%21%E2%82%AC%2014%2C91%21%E2%82%AC%209%2C69%21%21%21119.18%2177.45%21%4021039ceb17711632823162636ed91c%2112000042738795008%21sh%21DE%216135611440%21X&spm=a2g0o.store_pc_home.allitems_choice_2009265069263.1005007887384238&gatewayAdapt=glo2deu) | Avoids soldering to test points. |
 
 ---
 
-### Configure the OpenESPTemp
-- After flashing you have to press the reset button once to start the firmware
-- When the OpenESPTemp is not configured yet, it will create a WiFi network which can be used to configure the OpenESPTemp:
+## 🛠️ Hardware Assembly
 
-1. Connect to `OpenESPTemp Configurator`
-2. Open `http://192.168.4.1` in your browser
-   - You should now see a simple form for configuration
-3. Configure the sensor:
-   - SSID: SSID of the network the sensor should connect to
-   - Password: Password of the network
-   - Post URL: The URL where the post request should be sent to
-   - Authorization: The Bearer token used for authentication (Do no include Bearer, only the token itself)
-4. After clicking submit, the configuration will be saved and the OpenESPTemp will be restarted
-5. Now the sensor should work as expected.
+1. **Prepare the PCB**: Solder the components onto the PCB (if not using an SMT service).
+   > **🛑 Warning:** You need to short the Solder Jumper labeled LDO when not using a LDO! (Which is the default)
+   - The current version of the pcb has an issue with C4. Instead of the cap you need to short the two contacts of the capacitor.
+   - Also if using a Pogo Adapter to flash the firmware, it should be flashed before mounting the battery holders, as the battery holder blocks access to the pins with the adapter.
 
-## PCB Design
+   <img src="docs/_assets/pcb_fix.webp" alt="Pcb Fix" width="512px">
 
-The PCB for OpenESPTemp includes the following features:
-- **Voltage Divider**: Allows monitoring of battery health.
-- **Exposed UART Header**: Facilitates flashing and serial communication.
-- **JST 2-Pin Connector**: For connecting a battery.
-- **BME280 Environmental Sensor**: Measures temperature, humidity, and pressure.
-- **ESP32-C3**: Powers the sensor and handles wireless communication and processing.
+2. **Print the Case**: Print using standard settings with a 0.2 mm layer height -  no supports needed.
+   - The case does not require any screws, it holds together with snap connections
+3. **Flash the Firmware**: Follow the instructions below to flash, and configure Wi-Fi/REST endpoint.
+4. **Insert the Battery**:
+   > **🛑 Warning:** Check the polarity carefully. Never connect the USB to UART adapter and the battery at the same time.
+5. **Wake**: Press the WAK button for about a second. The sensor will start sending data periodically.
 
+<div style="display: flex; gap: 20px;">
+   <img src="docs/_assets/case_holder.webp" alt="Case Pcb Holder" height="512px">
+   <img src="docs/_assets/case_open.webp" alt="Case open" height="512px">
+</div>
 
-The PCB for OpenESPTemp was designed using [Flux](https://flux.ai). A copy of the project is included under [electronics](/electronics/), but you can also view the current version here:
-[Project Link](https://www.flux.ai/cuzimsyntax/openesptemp).
+---
 
-Future versions of the OpenESPTemp hardware will transition to **KiCad**.
+## 💻 Firmware
 
+By default, the sensor connects to a specified Wi-Fi network and sends data to a REST API endpoint every 15 minutes.
 
-## Troubleshooting
+> **💡 Note:** Newer releases include a pre-compiled `.bin` file. If you use this, you can skip the compilation step.
+
+### Compiling (PlatformIO)
+
+The firmware can be compiled and flashed with [PlatformIO](https://platformio.org/). You can build in debug mode (to get Serial debug information) or release mode:
+
+```bash
+# Debug mode
+platformio run --environment esp32-c6-debug
+
+# Release mode
+platformio run --environment esp32-c6
+```
+
+### Flashing
+
+**Wiring:** Connect the UART to USB adapter to the PCB:
+
+| UART Adapter | Direction | PCB | Note |
+| :--- | :---: | :--- | :--- |
+| **3V3** | ⟷ | **3V3** | Use 3.3V only (do not use 5V) |
+| **GND** | ⟷ | **GND** | Common ground is required |
+| **TX** | ⟶ | **RX** | Connect Transmit to Receive |
+| **RX** | ⟵ | **TX** | Connect Receive to Transmit |
+
+> **ℹ️ Info:** Remember to **cross** the data lines! The **TX** (Transmit) pin on the adapter must connect to the **RX** (Receive) pin on the PCB, and vice versa.
+
+> **🛑 Warning:** You must disconnect the battery before connecting the UART to USB adapter!
+
+#### Option A: Flashing via PlatformIO
+Run the following command:
+```bash
+platformio run --target upload --environment esp32-c6
+```
+When `Looking for upload port...` appears in the console, put the ESP32 into boot mode:
+1. Push the Reset and Boot buttons at the same time.
+2. Release the Reset button while keeping the Boot button pressed.
+3. The upload will start; release the Boot button.
+
+#### Option B: Flashing via esptool (Precompiled Binary)
+Flash the binary using [esptool](https://github.com/espressif/esptool):
+```bash
+python -m esptool --chip esp32-c6 --port <your-port> --baud 460800 write_flash -z 0x1000 firmware.bin
+```
+*(Put the ESP32 into boot mode as described above, and replace `<your-port>` with the correct serial port.)*
+
+---
+
+## ⚙️ Configuration
+
+After flashing, press the Reset button once to start the firmware. If unconfigured, the device will create a Wi-Fi network for setup:
+
+1. Connect to the **`OpenESPTemp Configurator`** Wi-Fi network.
+2. Open **`http://192.168.4.1`** in a browser.
+3. Configure the following fields in the form:
+   - **SSID**: Target Wi-Fi network name.
+   - **Password**: Target Wi-Fi network password.
+   - **Post URL**: The URL for the POST request.
+   - **Authorization**: The Bearer token for authentication (do not include "Bearer", only the token).
+4. Click submit. The configuration will be saved, and the device will restart.
+5. The sensor will now operate as expected.
+
+---
+
+## 📐 PCB Design
+
+The PCB was created using KiCad 9.0, the project files are located under [/electronics](/electronics).
+
+The power latch used in this design was inspired by [this](https://circuitcellar.com/resources/quickbits/soft-latching-power-circuits/) article.
+
+To generate a panel yourself using the provided script:
+1. Install [KiKit](https://github.com/yaqwsx/KiKit).
+2. Execute `/electronics/panelize.sh`.
+
+The panel with the existing config looks like this:
+
+<img src="docs/_assets/pcb_panel.webp" alt="Flash wiring" width="480px">
+
+---
+
+## 🧊 CAD
+
+The case was created using Onshape. To edit the case yourself click [here](https://cad.onshape.com/documents/398f777c8db5f4a69ffcddaa/w/b07485d077929fc2f0119cac/e/3395ca67b8682bc329248728?configuration=List_Cy8et1WFmB3Iby%3DDefault&renderMode=0&uiState=699202edfa46508150bca706) and copy the project.
+
+The current STL files are included in the repo under [/cad](/cad).
+
+---
+
+## 🚧 Troubleshooting
 
 TBD
 
 ---
 
-## Coming next
-- [ ] Move pcb to KiCad
+## 🗺️ Coming Next
+
 - [ ] Include mounting bracket for the case
 - [ ] Include HomeAssistant integration
-- [ ] Use ESP32-C6 to add ability to use Thread / Matter / Zigbee
-- [ ] Use Low Power Timer with Power Latch to further reduce power consumption
 
 ---
 
-## License
+## 📄 License
 
 This project is licensed under the GNU General Public License v3.0. See the [LICENSE](LICENSE) file for details.
 
----
+
+### Hardware Libraries
+Various libraries were used to create the PCB. Copies of most libraries are included in `/electronics/libs/` to ensure the KiCad project works without manual installation.
+
+Some of these libraries are licensed under their respective licenses. Please review the `README.md` file in the library folders.
