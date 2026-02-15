@@ -5,9 +5,9 @@
 The PCB is designed to operate with a rechargeable LiFePo4 AA battery. This repository includes the PCB design, a 3D-printable case, and basic firmware.
 
 <div style="display: flex;">
-   <img src="docs/_assets/case_side.webp" alt="Case Side" width="360px">
-   <img src="docs/_assets/pcb_front_transparent.webp" alt="PCB Front" width="360px">
-   <img src="docs/_assets/pcb_back_transparent.webp" alt="PCB Back" width="360px">
+   <img src="docs/_assets/case_side.webp" alt="Case Side" height="512px" width="273px">
+   <img src="docs/_assets/pcb_front_transparent.webp" alt="PCB Front" height="512px">
+   <img src="docs/_assets/pcb_back_transparent.webp" alt="PCB Back" height="512px">
 </div>
 
 ---
