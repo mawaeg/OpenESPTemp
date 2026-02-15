@@ -145,6 +145,14 @@ The panel with the existing config looks like this:
 
 ---
 
+## 🧊 CAD
+
+The case was created using Onshape. To edit the case yourself click [here](https://cad.onshape.com/documents/398f777c8db5f4a69ffcddaa/w/b07485d077929fc2f0119cac/e/3395ca67b8682bc329248728?configuration=List_Cy8et1WFmB3Iby%3DDefault&renderMode=0&uiState=699202edfa46508150bca706) and copy the project.
+
+The current STL files are included in the repo under [/cad](/cad).
+
+---
+
 ## 🚧 Troubleshooting
 
 TBD
