@@ -3,6 +3,7 @@
 #include <WiFi.h>
 #include <AsyncTCP.h>
 #include <ESPAsyncWebServer.h>
+#include <ElegantOTA.h>
 
 #include "ConfigurationWebServer.h"
 
@@ -43,10 +44,11 @@ void ConfigurationWebServer::run(){
         }
 
     });
+    ElegantOTA.begin(&server);
     server.begin();
 
     while (!this->is_finished){
-        __asm__("nop\n\t"); // Needed (otherwise we wont escape from the loop when finished)
+        ElegantOTA.loop();
     }
 
     delay(2000);

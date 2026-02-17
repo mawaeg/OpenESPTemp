@@ -36,7 +36,7 @@ float humidity = -1;
 float pressure = -1;
 float voltage = -1;
 
-void fct_pin_reset_logic();
+bool fct_pin_reset_logic();
 void initialize_wifi();
 void initialize_timer();
 bool initialize_bme();
@@ -61,9 +61,7 @@ void setup() {
 
   initialize_timer();
 
-  fct_pin_reset_logic();
-
-  if (!manager.is_valid()){
+  if (fct_pin_reset_logic() || !manager.is_valid()){
     configServer.run(); //Only exists if configuration was successful.
 
     // Set CLKOUT = LOW -> Not used, reduces power consumption of RTC
@@ -93,11 +91,11 @@ void loop() {
   delay(1000);
 }
 
-void fct_pin_reset_logic(){
+bool fct_pin_reset_logic(){
   pinMode(FCT_PIN, INPUT_PULLUP);
 
   if (digitalRead(FCT_PIN) != LOW){
-    return;
+    return false;
   }
 
   #ifdef DEBUG
@@ -109,9 +107,6 @@ void fct_pin_reset_logic(){
 
   while(digitalRead(FCT_PIN) == LOW){
     if (millis() - start_time > FCT_PIN_RESET_HOLD_TIME){
-      for (int i = 0; i < credential_keys.size(); i++){
-          manager.remove(credential_keys[i]);
-      }
       reset_done = true;
       break;
     }
@@ -125,6 +120,8 @@ void fct_pin_reset_logic(){
       Serial.println("Reset aborted. Credentials have NOT been deleted.");
     }
   #endif
+
+  return reset_done;
 }
 
 void initialize_wifi(){

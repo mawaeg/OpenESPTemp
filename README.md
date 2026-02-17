@@ -21,6 +21,7 @@ The PCB is designed to operate with a rechargeable LiFePo4 AA battery. This repo
 - **ESP32-C6 Microcontroller**: Handles wireless communication and processing.
 - **Customizable PCB**: Features a Qwiic connector and the option to use an LDO when not using a LiFePo4 battery.
 - **Open Source**: Fully customizable for specific use cases.
+- **OTA updates**: Possibility to update the firmware over the air using ElegantOTA
 
 ---
 
@@ -41,7 +42,7 @@ The PCB can be ordered from any PCB manufacturer (e.g., JLCPCB). It can be order
 | :--- | :---: | :--- | :--- |
 | **LiFePo4 AA (14500) battery (!Normal AA batteries won't work!)** | 1 | [LiFePo4 battery](https://de.aliexpress.com/item/1005005870958670.html?spm=a2g0o.store_pc_home.promoteWysiwyg_2003671164534.1005005870958670&gatewayAdapt=glo2deu) | Any 3.2V LiFePo4 battery should work |
 | **3D Printing Filament (PETG)** | ~50g | [White PETG Filament](https://www.nobufil.com/product-page/filament-petg-white) | |
-| **UART to USB Adapter** | 1 | [WaveShare CP2102 Adapter](https://de.aliexpress.com/item/1005006742102516.html?pdp_npi=4%40dis%21EUR%21%E2%82%AC%201%2C97%21%E2%82%AC%200%2C99%21%21%212.28%211.14%21%40211b876717711633668585571ecf24%2112000038159199244%21sh%21DE%210%21X&spm=a2g0o.store_pc_allItems_or_groupList.new_all_items_2007567450475.1005006742102516&gatewayAdapt=glo2deu) | |
+| **UART to USB Adapter** | 1 | [CP2102 Adapter](https://de.aliexpress.com/item/1005006742102516.html?pdp_npi=4%40dis%21EUR%21%E2%82%AC%201%2C97%21%E2%82%AC%200%2C99%21%21%212.28%211.14%21%40211b876717711633668585571ecf24%2112000038159199244%21sh%21DE%210%21X&spm=a2g0o.store_pc_allItems_or_groupList.new_all_items_2007567450475.1005006742102516&gatewayAdapt=glo2deu) | |
 | **Pogo Pin Adapter** *(Optional)* | 1 | [4-Pin Prototyping Clamps](https://de.aliexpress.com/item/1005007887384238.html?pdp_npi=4%40dis%21EUR%21%E2%82%AC%2014%2C91%21%E2%82%AC%209%2C69%21%21%21119.18%2177.45%21%4021039ceb17711632823162636ed91c%2112000042738795008%21sh%21DE%216135611440%21X&spm=a2g0o.store_pc_home.allitems_choice_2009265069263.1005007887384238&gatewayAdapt=glo2deu) | Avoids soldering to test points. |
 
 ---
@@ -73,7 +74,10 @@ The PCB can be ordered from any PCB manufacturer (e.g., JLCPCB). It can be order
 
 By default, the sensor connects to a specified Wi-Fi network and sends data to a REST API endpoint every 15 minutes.
 
-> **💡 Note:** Newer releases include a pre-compiled `.bin` file. If you use this, you can skip the compilation step.
+The firmware also allows to update itself using Over The Air updates using [ElegantOTA](https://github.com/ayushsharma82/ElegantOTA).
+Read more about that [here](#flash-using-ota-update).
+
+> **💡 Note:** Newer [releases](https://github.com/mawaeg/OpenESPTemp/releases) include a pre-compiled `.bin` file. If you use this, you can skip the compilation step.
 
 ### Compiling (PlatformIO)
 
@@ -86,6 +90,8 @@ platformio run --environment esp32-c6-debug
 # Release mode
 platformio run --environment esp32-c6
 ```
+
+The firmware has to be flashed via the Serial Interface once. Afterwards it can be updated with [OTA updates](#flash-using-ota-update).
 
 ### Flashing
 
@@ -119,6 +125,16 @@ python -m esptool --chip esp32-c6 --port <your-port> --baud 460800 write_flash -
 ```
 *(Put the ESP32 into boot mode as described above, and replace `<your-port>` with the correct serial port.)*
 
+### Flash using OTA update
+
+The firmware allows to update itself via OTA updates. For that to work the firmware has to be flashed via UART initially.
+
+This is how to trigger a OTA update.
+1. Follow steps 1 and 2 of [Reconfigure the device](#reconfigure-the-device)
+4. Open **`http://192.168.4.1/update`** in a browser.
+5. Here you can upload a new binary (Either get it from the [releases page](https://github.com/mawaeg/OpenESPTemp/releases) or compile it yourself as described [here](#compiling-(platformio))).
+6. When uploading while powered by battery you should press and hold the WAK button during the update
+
 ---
 
 ## ⚙️ Configuration
@@ -134,6 +150,15 @@ After flashing, press the Reset button once to start the firmware. If unconfigur
    - **Authorization**: The Bearer token for authentication (do not include "Bearer", only the token).
 4. Click submit. The configuration will be saved, and the device will restart.
 5. The sensor will now operate as expected.
+
+### Reconfigure the device
+
+To reconfigure the OpenESPTemp after it has already been configured once, you need do the following:
+1. Bring the OpenESPTemp in config mode:
+   1. When connected to UART: Press and hold FCT button and press RST shortly. Release FCT after ~6 seconds
+   2. When running with battery: Press and hold FCT button and press WAK for around a second. Release FCT after ~6 seconds
+2. The OpenESPTemp will create a network called  **`OpenESPTemp Configurator`**. Connect to it.
+3. Open **`http://192.168.4.1`** in a browser an reconfigure the fields. Refer to [⚙️ Configuration](#⚙️-configuration)
 
 ---
 

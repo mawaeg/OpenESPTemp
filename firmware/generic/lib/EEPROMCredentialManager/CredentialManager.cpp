@@ -5,6 +5,7 @@ CredentialManager::CredentialManager(){}
 CredentialManager::~CredentialManager(){}
 
 void CredentialManager::put(const char* key, const char* value){
+    this->remove(key); // Remove before potentially adding it a seconds time.
     preferences.begin("credentials", false);
     preferences.putString(key, value);
     preferences.end();
