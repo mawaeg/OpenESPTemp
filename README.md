@@ -162,6 +162,24 @@ To reconfigure the OpenESPTemp after it has already been configured once, you ne
 
 ---
 
+## ⚡ Power consumption
+
+The OpenESPTemp aims to have a very low power consumption.
+
+During sleep, the power consumption is below 200nA (200nA is the limit of the PPK 2, it is probably at around 50nA according to the RV3028-C7 datasheet):
+
+<img src="docs/_assets/power_consumption/power_consumption_sleep.webp" alt="Power consumption sleep" width="1024px">
+
+The power consumption for a whole cycle (15 min with sending data once) looks like this:
+
+<img src="docs/_assets/power_consumption/power_consumption_15min_cycle.webp" alt="Power consumption 15 min cycle" width="1024px">
+
+The power consumption for active mode (sending data) looks the following:
+
+<img src="docs/_assets/power_consumption/power_consumption_active.webp" alt="Power consumption active" width="1024px">
+
+---
+
 ## 📐 PCB Design
 
 The PCB was created using KiCad 9.0, the project files are located under [/electronics](/electronics).
