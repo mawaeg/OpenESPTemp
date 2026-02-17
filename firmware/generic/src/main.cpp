@@ -42,7 +42,6 @@ void initialize_timer();
 bool initialize_bme();
 void read_data();
 void post_data();
-void stop_wifi();
 
 void setup() {
   // Hold up the Power Latch
@@ -51,22 +50,29 @@ void setup() {
 
   pinMode(VOLTAGE_PIN, INPUT);
 
+
+  delay(500);
+  Wire.begin(SDA_PIN, SCL_PIN);
+
   #ifdef DEBUG
     Serial.begin(115200);
     Serial.println("Hello world!");
   #endif
 
+  initialize_timer();
+
   fct_pin_reset_logic();
 
   if (!manager.is_valid()){
-    configServer.run();
+    configServer.run(); //Only exists if configuration was successful.
+
+    // Set CLKOUT = LOW -> Not used, reduces power consumption of RTC
+    rtc.writeEEPROMRegister(0x35, 0b111);
   }
 
   // In case no connection is established esp sleeps 15 minutes.
   initialize_wifi();
 
-  Wire.begin(SDA_PIN, SCL_PIN);
-  initialize_timer();
   bool init_successful = initialize_bme();
   #ifdef DEBUG
     Serial.println("----");
@@ -77,8 +83,6 @@ void setup() {
     read_data();
     post_data();
   }
-
-  stop_wifi();
 
   digitalWrite(LATCH_PIN, LOW);
 }
@@ -237,9 +241,4 @@ void post_data(){
   #ifdef DEBUG
     Serial.println("Request was sent");
   #endif
-}
-
-void stop_wifi(){
-  WiFi.disconnect();
-  WiFi.mode(WIFI_OFF);
 }

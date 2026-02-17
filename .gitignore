@@ -1,6 +1,7 @@
 #Firmware
 .pio
 .vscode/
+firmware/*/.gitignore
 
 SECRETS.h
 
