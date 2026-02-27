@@ -7205,11 +7205,11 @@
 	(footprint "Resistor_SMD:R_0603_1608Metric"
 		(layer "F.Cu")
 		(uuid "a1aa2743-90c5-46e9-897f-2233aad0d3b1")
-		(at 92.075 69.75)
+		(at 92.075 69.75 180)
 		(descr "Resistor SMD 0603 (1608 Metric), square (rectangular) end terminal, IPC-7351 nominal, (Body size source: IPC-SM-782 page 72, https://www.pcb-3d.com/wordpress/wp-content/uploads/ipc-sm-782a_amendment_1_and_2.pdf), generated with kicad-footprint-generator")
 		(tags "resistor")
 		(property "Reference" "R6"
-			(at -1.43 0 0)
+			(at 1.43 0 0)
 			(layer "F.SilkS")
 			(uuid "19396831-df9c-413f-ac92-384edc3bd85c")
 			(effects
@@ -7268,7 +7268,7 @@
 			)
 		)
 		(property "MFR" "MCT06030C4701FP500"
-			(at 0 0 0)
+			(at 0 0 180)
 			(unlocked yes)
 			(layer "F.Fab")
 			(hide yes)
@@ -7286,16 +7286,6 @@
 		(sheetfile "OpenESPTemp.kicad_sch")
 		(attr smd)
 		(fp_line
-			(start -0.237258 -0.5225)
-			(end 0.237258 -0.5225)
-			(stroke
-				(width 0.12)
-				(type solid)
-			)
-			(layer "F.SilkS")
-			(uuid "5b4b9212-b6ad-448f-a21a-098f76e5f7d3")
-		)
-		(fp_line
 			(start -0.237258 0.5225)
 			(end 0.237258 0.5225)
 			(stroke
@@ -7304,6 +7294,16 @@
 			)
 			(layer "F.SilkS")
 			(uuid "2f158c02-ea1d-4da5-958e-14837b54152a")
+		)
+		(fp_line
+			(start -0.237258 -0.5225)
+			(end 0.237258 -0.5225)
+			(stroke
+				(width 0.12)
+				(type solid)
+			)
+			(layer "F.SilkS")
+			(uuid "5b4b9212-b6ad-448f-a21a-098f76e5f7d3")
 		)
 		(fp_rect
 			(start -1.48 -0.73)
@@ -7339,20 +7339,20 @@
 			)
 		)
 		(pad "1" smd roundrect
-			(at -0.825 0)
-			(size 0.8 0.95)
-			(layers "F.Cu" "F.Mask" "F.Paste")
-			(roundrect_rratio 0.25)
-			(net 10 "SDA")
-			(pintype "passive")
-			(uuid "4f8b97d4-2272-4198-870f-c78cb4f310ca")
-		)
-		(pad "2" smd roundrect
-			(at 0.825 0)
+			(at -0.825 0 180)
 			(size 0.8 0.95)
 			(layers "F.Cu" "F.Mask" "F.Paste")
 			(roundrect_rratio 0.25)
 			(net 3 "+3V3")
+			(pintype "passive")
+			(uuid "4f8b97d4-2272-4198-870f-c78cb4f310ca")
+		)
+		(pad "2" smd roundrect
+			(at 0.825 0 180)
+			(size 0.8 0.95)
+			(layers "F.Cu" "F.Mask" "F.Paste")
+			(roundrect_rratio 0.25)
+			(net 10 "SDA")
 			(pintype "passive")
 			(uuid "ccadf6f5-ee4c-42e5-92b3-e23c93c2ca23")
 		)
@@ -9453,7 +9453,7 @@
 			(justify bottom)
 		)
 	)
-	(gr_text "OpenESPTemp\nv2.0.1"
+	(gr_text "OpenESPTemp\nv2.1.0"
 		(at 96 65.8825 90)
 		(layer "B.SilkS")
 		(uuid "898ee532-923d-48a5-a86c-a1d7aba6a166")
