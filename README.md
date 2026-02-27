@@ -50,12 +50,9 @@ The PCB can be ordered from any PCB manufacturer (e.g., JLCPCB). It can be order
 ## 🛠️ Hardware Assembly
 
 1. **Prepare the PCB**: Solder the components onto the PCB (if not using an SMT service).
-   > **🛑 Warning:** You need to short the Solder Jumper labeled LDO when not using a LDO! (Which is the default)
-   - The current version of the pcb has an issue with C4. Instead of the cap you need to short the two contacts of the capacitor.
-   - Also if using a Pogo Adapter to flash the firmware, it should be flashed before mounting the battery holders, as the battery holder blocks access to the pins with the adapter.
+   > **ℹ️ Info:** The LDO Solder Jumper is pre-closed for LiFePO4 battery use. If you choose to install an LDO, ensure you cut/open the jumper first.
 
-   <img src="docs/_assets/pcb_fix.webp" alt="Pcb Fix" width="512px">
-
+   > **💡 Note:** If using a Pogo Adapter to flash the firmware, it should be flashed before mounting the battery holders, as the battery holder blocks access to the pins with the adapter.
 2. **Print the Case**: Print using standard settings with a 0.2 mm layer height -  no supports needed.
    - The case does not require any screws, it holds together with snap connections
 3. **Flash the Firmware**: Follow the instructions below to flash, and configure Wi-Fi/REST endpoint.
